@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include ecosaras *.css
+recursive-include ecosaras *.csv
+recursive-include ecosaras *.html
+recursive-include ecosaras *.ico
+recursive-include ecosaras *.js
+recursive-include ecosaras *.json
+recursive-include ecosaras *.md
+recursive-include ecosaras *.png
+recursive-include ecosaras *.py
+recursive-include ecosaras *.svg
+recursive-include ecosaras *.txt
+recursive-exclude ecosaras *.pyc
