@@ -36,6 +36,18 @@ frappe.query_reports["Expense claim added filters"] = {
             "options": "Company",
             "default": frappe.defaults.get_user_default("Company"),
             "reqd": 1
+        },
+        {
+            "fieldname": "approval_status",
+            "label": __("Status"),
+            "fieldtype": "Select",
+            "default": "Approved",
+			"options": [
+                { "label": __("All"), "value": "" }, 
+				{ "label": __("Draft"), "value": "Draft" }, 
+				{ "label": __("Approved"), "value": "Approved" },
+				{ "label": __("Rejected"), "value": "Rejected" }
+            ]   
         }
 
 	]
