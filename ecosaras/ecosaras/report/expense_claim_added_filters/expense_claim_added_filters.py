@@ -13,6 +13,7 @@ def execute(filters=None):
         {"label": _("Expense Type"), "fieldname": "expense_type", "fieldtype": "Data", "width": 150},
         {"label": _("Description"), "fieldname": "description", "fieldtype": "Data", "width": 250},
         {"label": _("Total Claimed Amount"), "fieldname": "total_claimed_amount", "fieldtype": "Currency", "width": 150},
+        {"label": _("Total Sanctioned Amount"), "fieldname": "total_sanctioned_amount", "fieldtype": "Currency", "width": 150},
         {"label": _("Posting Date"), "fieldname": "posting_date", "fieldtype": "Date", "width": 120},
         {"label": _("Approval Status"), "fieldname": "approval_status", "fieldtype": "Data", "width": 120}
     ]
@@ -35,7 +36,7 @@ def execute(filters=None):
             GROUP_CONCAT(ecd.description) as description,
             GROUP_CONCAT(ecd.expense_type) as expense_type,
             GROUP_CONCAT(ecd.expense_date) as expense_date,
-            ec.total_claimed_amount, ec.posting_date, ec.approval_status
+            ec.total_claimed_amount, ec.total_sanctioned_amount,ec.posting_date, ec.approval_status
         FROM
             `tabExpense Claim` ec
         LEFT JOIN
@@ -51,10 +52,13 @@ def execute(filters=None):
 
    
     total_claimed_amount = sum(row['total_claimed_amount'] for row in data)
+    total_sanctioned_amount = sum(row['total_sanctioned_amount'] for row in data)
+
 
     total_row = {
         "name": _("Total"),
-        "total_claimed_amount": total_claimed_amount
+        "total_claimed_amount": total_claimed_amount,
+        "total_sanctioned_amount": total_sanctioned_amount
     }
 
     data.append(total_row)
