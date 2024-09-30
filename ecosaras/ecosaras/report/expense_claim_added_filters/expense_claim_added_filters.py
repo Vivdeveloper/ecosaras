@@ -12,6 +12,7 @@ def execute(filters=None):
         {"label": _("Expense Date"), "fieldname": "expense_date", "fieldtype": "Date", "width": 120},
         {"label": _("Expense Type"), "fieldname": "expense_type", "fieldtype": "Data", "width": 150},
         {"label": _("Description"), "fieldname": "description", "fieldtype": "Data", "width": 250},
+        {"label": _("Amount"), "fieldname": "amount", "fieldtype": "Currency", "width": 150},  
         {"label": _("Total Claimed Amount"), "fieldname": "total_claimed_amount", "fieldtype": "Currency", "width": 150},
         {"label": _("Total Sanctioned Amount"), "fieldname": "total_sanctioned_amount", "fieldtype": "Currency", "width": 150},
         {"label": _("Posting Date"), "fieldname": "posting_date", "fieldtype": "Date", "width": 120},
@@ -33,10 +34,8 @@ def execute(filters=None):
     data = frappe.db.sql(f"""
         SELECT
             ec.name, ec.employee, ec.employee_name, ec.company, 
-            GROUP_CONCAT(ecd.description) as description,
-            GROUP_CONCAT(ecd.expense_type) as expense_type,
-            GROUP_CONCAT(ecd.expense_date) as expense_date,
-            ec.total_claimed_amount, ec.total_sanctioned_amount,ec.posting_date, ec.approval_status
+            ecd.description, ecd.expense_type, ecd.expense_date, ecd.amount,
+            ec.total_claimed_amount, ec.total_sanctioned_amount, ec.posting_date, ec.approval_status
         FROM
             `tabExpense Claim` ec
         LEFT JOIN
@@ -44,23 +43,21 @@ def execute(filters=None):
         WHERE
             ec.docstatus < 2
             {conditions}
-        GROUP BY
-            ec.name
         ORDER BY
             ec.posting_date DESC
     """, filters, as_dict=1)
 
-   
+
     total_claimed_amount = sum(row['total_claimed_amount'] for row in data)
     total_sanctioned_amount = sum(row['total_sanctioned_amount'] for row in data)
-
+    total_amount= sum(row['amount'] for row in data)
 
     total_row = {
         "name": _("Total"),
         "total_claimed_amount": total_claimed_amount,
-        "total_sanctioned_amount": total_sanctioned_amount
+        "total_sanctioned_amount": total_sanctioned_amount,
+        "amount": total_amount
     }
-
     data.append(total_row)
 
     return columns, data

@@ -25,11 +25,6 @@ frappe.query_reports["Expense claim added filters"] = {
             "options": "Employee"
         },
         {
-            "fieldname": "employee_name",
-            "label": __("Employee Name"),
-            "fieldtype": "Data"
-        },
-        {
             "fieldname": "company",
             "label": __("Company"),
             "fieldtype": "Link",
