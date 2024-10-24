@@ -8,6 +8,7 @@ def execute(filters=None):
         {"label": _("ID"), "fieldname": "name", "fieldtype": "Link", "options": "Expense Claim", "width": 100},
         {"label": _("From Employee"), "fieldname": "employee", "fieldtype": "Link", "options": "Employee", "width": 150},
         {"label": _("Employee Name"), "fieldname": "employee_name", "fieldtype": "Data", "width": 150},
+        {"label": _("Department of Expense"), "fieldname": "custom_department_of_expense", "fieldtype": "Link", "options": "Department", "width": 150},
         {"label": _("Company"), "fieldname": "company", "fieldtype": "Link", "options": "Company", "width": 150},
         {"label": _("Expense Date"), "fieldname": "expense_date", "fieldtype": "Date", "width": 120},
         {"label": _("Expense Type"), "fieldname": "expense_type", "fieldtype": "Data", "width": 150},
@@ -33,7 +34,7 @@ def execute(filters=None):
 
     data = frappe.db.sql(f"""
         SELECT
-            ec.name, ec.employee, ec.employee_name, ec.company, 
+            ec.name, ec.employee, ec.employee_name,ec.custom_department_of_expense, ec.company, 
             ecd.description, ecd.expense_type, ecd.expense_date, ecd.amount,
             ec.total_claimed_amount, ec.total_sanctioned_amount, ec.posting_date, ec.approval_status
         FROM
