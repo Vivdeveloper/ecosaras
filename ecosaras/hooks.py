@@ -199,3 +199,24 @@ app_license = "MIT"
 # auth_hooks = [
 #	"ecosaras.auth.validate"
 # ]
+# doc_events = {
+#     "*": {
+#         "validate": "ecosaras.override.filter_print.validate_custom_default_print_format"
+#     }
+# }
+
+# doc_events = {
+#     "*": {  
+#         "validate": "ecosaras.override.filter_print.set_default_print_format",  
+#     }
+# }
+
+
+override_doctype_dashboards = {
+    "Sales Order": "ecosaras.override.maintenance_schedule_dashboard.get_dashboard_data",
+}
+
+
+doctype_js = {
+    "Sales Order": "public/js/sales_order.js",
+    }
