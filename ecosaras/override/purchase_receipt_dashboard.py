@@ -1,4 +1,6 @@
+import frappe
 from frappe import _
+from frappe import db
 
 @frappe.whitelist()
 def get_quality_inspection_counts(data):
