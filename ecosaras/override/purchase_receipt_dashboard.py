@@ -3,15 +3,14 @@ import frappe
 from frappe import _
 from frappe.utils import getdate, nowdate, nowtime, flt
 
-@frappe.whitelist()
-def get_quality_inspection_counts(filters=None):
-    filters = frappe.parse_json(filters) if filters else {}
-    purchase_receipt_no = filters.get('purchase_receipt_no')
-    docstatus = filters.get('docstatus', [0, 1, 2])  # Default to [0, 1, 2] if not provided
-    
-    count = frappe.db.count('Quality Inspection', {
-        'reference_name': purchase_receipt_no,
-        'docstatus': ['in', docstatus]  # Apply the filters
+
+def get_quality_inspection_counts(purchase_receipt_no, filters=None):
+    if not filters:
+        filters = {}
+
+    filters.update({
+        "reference_name": ["=", purchase_receipt_no],
+        "docstatus": ["in", [0, 1, 2]]  # Draft, Submitted, Cancelled
     })
-    
-    return count
+
+    return frappe.get_all('Quality Inspection', filters=filters, fields=['name'], as_list=True)
