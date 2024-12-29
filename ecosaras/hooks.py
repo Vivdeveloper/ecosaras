@@ -208,6 +208,9 @@ app_license = "MIT"
 
 override_doctype_dashboards = {
     "Sales Order": "ecosaras.override.maintenance_schedule_dashboard.get_dashboard_data",
+    # "Purchase Receipt":"ecosaras.override.purchase_receipt_dashboard.get_data",
+    "Purchase Receipt": "ecosaras.override.purchase_receipt_dashboard.get_quality_inspection_counts"
+
 }
 
 
