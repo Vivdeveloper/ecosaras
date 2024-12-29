@@ -31,6 +31,7 @@ def send_email_on_submission(doc, method):
         if item.sales_person:
             sales_person = frappe.get_doc("Sales Person", item.sales_person)
             employee = frappe.get_doc("Employee", sales_person.employee)
+            
             email = frappe.db.get_value("User", {"name": employee.user_id}, "email")
             
             if email:
