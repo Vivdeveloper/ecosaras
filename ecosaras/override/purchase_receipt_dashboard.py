@@ -8,15 +8,13 @@ def get_quality_inspection_counts(data):
     
     # Add connection for Quality Inspection in Purchase Order
     for transaction in data.get("transactions", []):
-        if transaction.get("label") == _("Reference"):
-            transaction["items"].append({
-                    "Quality Inspection": {
-                        "filters": {
-                            "reference_name": ["=", "purchase_receipt_no"],  # Add filter
-                            "docstatus": ["in", [0, 1, 2]]  # Draft, Submitted, Cancelled
-                        }
-                    }
-            })
+        if transaction.get("label") == _("Fulfillment"):
+            transaction["items"].append("Quality Inspection")
+            break
+    else:
+        data["transactions"].append({
+            "label": _("Fulfillment"),
+            "items": ["Quality Inspection"],
+        })
 
     return data
-
