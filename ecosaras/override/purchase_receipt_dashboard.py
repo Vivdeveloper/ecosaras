@@ -1,5 +1,6 @@
 from frappe import _
 
+@frappe.whitelist()
 def get_quality_inspection_counts(data):
     data["non_standard_fieldnames"]["Purchase Receipt"] = "quality_inspection"
     
