@@ -206,15 +206,6 @@ app_license = "MIT"
 # }
 
 
-
-doc_events = {
-    "Maintenance Schedule": {
-        "on_submit": "ecosaras.override.maintenance_schedule.send_email_on_submission"
-    }
-}
-
-
-
 override_doctype_dashboards = {
     "Sales Order": "ecosaras.override.maintenance_schedule_dashboard.get_dashboard_data",
     # "Purchase Receipt":"ecosaras.override.purchase_receipt_dashboard.get_data",
@@ -226,3 +217,10 @@ override_doctype_dashboards = {
 doctype_js = {
     "Sales Order": "public/js/sales_order.js",
     }
+
+
+doc_events = {
+    "Maintenance Schedule": {
+        "on_submit": "ecosaras.override.maintenance_schedule.send_email_on_submission"
+    }
+}
