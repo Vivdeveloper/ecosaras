@@ -216,6 +216,7 @@ override_doctype_dashboards = {
 
 doctype_js = {
     "Sales Order": "public/js/sales_order.js",
+    "Purchase Receipt": "public/js/purchase_receipt.js"
     }
 
 
