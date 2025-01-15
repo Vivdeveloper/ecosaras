@@ -96,9 +96,9 @@ app_license = "MIT"
 # ---------------
 # Override standard doctype classes
 
-override_doctype_class = {
-	"Production Plan": "ecosaras.override.production_plan.override_material"
-}
+# override_doctype_class = {
+# 	"Production Plan": "ecosaras.override.production_plan.override_material"
+# }
 
 # Document Events
 # ---------------
