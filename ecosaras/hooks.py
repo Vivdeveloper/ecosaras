@@ -7,6 +7,8 @@ app_description = "ecosaras"
 app_email = "sushantmanjare33@gmail.com"
 app_license = "MIT"
 
+
+
 # Includes in <head>
 # ------------------
 
@@ -94,9 +96,9 @@ app_license = "MIT"
 # ---------------
 # Override standard doctype classes
 
-# override_doctype_class = {
-#	"ToDo": "custom_app.overrides.CustomToDo"
-# }
+override_doctype_class = {
+	"Production Plan": "ecosaras.override.production_plan.override_material"
+}
 
 # Document Events
 # ---------------
@@ -140,9 +142,9 @@ app_license = "MIT"
 # ------------------------------
 #
 # override_whitelisted_methods = {
-#	"frappe.desk.doctype.event.event.get_events": "ecosaras.event.get_events"
+# 	"erpnext.manufacturing.doctype.production_plan.production_plan.make_material_request": "ecosaras.override.make_material_request"
 # }
-#
+#apps/erpnext/erpnext/manufacturing/doctype/production_plan/production_plan.py
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,
 # along with any modifications made in other Frappe apps
@@ -208,9 +210,6 @@ app_license = "MIT"
 
 override_doctype_dashboards = {
     "Sales Order": "ecosaras.override.maintenance_schedule_dashboard.get_dashboard_data"
-    # "Purchase Receipt":"ecosaras.override.purchase_receipt_dashboard.get_data",
-    # "Purchase Receipt": "ecosaras.override.purchase_receipt_dashboard.get_quality_inspection_counts"
-
 }
 
 
